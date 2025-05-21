@@ -43,7 +43,7 @@ const keepServerAlive = () => {
   }, 10 * 60 * 1000)
 }
 
-// keepServerAlive()
+ keepServerAlive()
 
 const startApp = async () => {
   const PORT = process.env.PORT || 3000
