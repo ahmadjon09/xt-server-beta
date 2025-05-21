@@ -1,0 +1,42 @@
+# 🛠 Разработчик учун (Dasturchi uchun)
++FR – Янги дўкон учун файл номлари  
++D – Telegram ботдаги баъзи файллар  
++"" – Асосий сервер файллари  
+
+# 🛍 Клиент учун (Mijoz uchun)
+
+## 📦 FR маҳсулот маълумотлари (Yangi do‘kon uchun mahsulotlar)
+title: { type: String, required: true }  # Маҳсулот номи  
+out_price: { type: Number, required: true }  # Ташқи нарх (мijозлар учун)  
+in_price: { type: Number, required: true }  # Ички нарх (сотиб олиш нархи)  
+ID: { type: String, required: true }  # Маҳсулот ID'си  
+count: { type: Number, required: true, default: 0 }  # Сони (омбордаги миқдор)  
+photos: [{ type: String, required: true }]  # Расмлар (маҳсулот расмлари)  
+color: { type: String, default: 'any' }  # Ранги (одатий: ҳар қандай)  
+sale: { type: Number, default: 0 }  # Чегирма (%)  
+size: { type: String }  # Ўлчам  
+
+## 🤖 D маҳсулот маълумотлари (Telegram ботдаги маҳсулотлар)
+title: { type: String, required: true }  # Маҳсулот номи  
+price: { type: Number, required: true }  # Нарх  
+ID: { type: String, required: true }  # Маҳсулот ID'си  
+count: { type: Number, required: true, default: 0 }  # Сони (омбордаги миқдор)  
+photos: [{ type: String, required: true }]  # Расмлар  
+color: { type: String }  # Ранг  
+sale: { type: Number, default: 0 }  # Чегирма (%)  
+size: { type: String }  # Ўлчам  
+
+## 🏪 Умумий маҳсулот маълумотлари (Тўлиқ каталог учун)
+title: { type: String, required: true }  # Маҳсулот номи  
+description: { type: String, required: true }  # Тафсилотлар (маҳсулот ҳақида маълумот)  
+price: { type: Number, required: true }  # Нарх  
+discount: { type: Number, default: 0 }  # Чегирма (%)  
+stock: { type: Number, required: true }  # Омбордаги миқдор  
+category: { type: String, required: true }  # Категория  
+brand: { type: String, required: true }  # Бренд  
+photos: [{ type: String, required: true }]  # Расмлар  
+colors: [{ type: String }]  # Ранглар  
+size: { type: String }  # Ўлчам  
+reviews: [ReviewSchema]  # Шарҳлар (фойдаланувчи, рейтинг, изоҳ)  
+rating: { type: Number, default: 0 }  # Умумий рейтинг  
+
