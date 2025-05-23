@@ -32,7 +32,11 @@ const ProductSchema = new mongoose.Schema(
         value: { type: String, required: true }
       }
     ],
-    size: { type: String },
+    sizes: [
+      {
+        size: { type: String, required: true }
+      }
+    ],
     reviews: [ReviewSchema],
     rating: { type: Number, default: 0 }
   },

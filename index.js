@@ -37,13 +37,13 @@ app.use('/posts', PostsRoutes)
 
 const keepServerAlive = () => {
   setInterval(() => {
-    Axios.get(process.env.RENDER_URL)
+    axios.get(process.env.RENDER_URL)
       .then(() => console.log('🔄 Server active'))
       .catch(() => console.log('⚠️ Ping failed'))
   }, 10 * 60 * 1000)
 }
 
-// keepServerAlive()
+keepServerAlive()
 
 const startApp = async () => {
   const PORT = process.env.PORT || 3000
