@@ -35,7 +35,7 @@ export const GetAllProducts = async (_, res) => {
 export const GetOneProduct = async (req, res) => {
   const { id } = req.params
   try {
-    const product = await Product.findById(id).populate('reviews.user', 'name')
+    const product = await Product.findById(id).populate('reviews.user', 'title')
     if (!product) {
       return res.status(404).json({ message: 'Product not found.' })
     }
@@ -60,7 +60,7 @@ export const UpdateProduct = async (req, res) => {
       .status(200)
       .json({ message: 'Product updated successfully', data: updatedProduct })
   } catch (error) {
-    if (error.name === 'CastError') {
+    if (error.title === 'CastError') {
       return sendErrorResponse(res, 400, 'Invalid product ID.', error)
     }
     return sendErrorResponse(res, 500, 'Internal server error.', error)
@@ -78,7 +78,7 @@ export const DeleteProduct = async (req, res) => {
       .status(200)
       .json({ message: 'Product has been deleted successfully.' })
   } catch (error) {
-    if (error.name === 'CastError') {
+    if (error.title === 'CastError') {
       return sendErrorResponse(res, 400, 'Invalid product ID.', error)
     }
     return sendErrorResponse(res, 500, 'Internal server error.', error)
@@ -189,10 +189,10 @@ export const searchProducts = async (req, res) => {
     const allProducts = await Product.find()
     const searchText = search.toLowerCase()
 
-    // Faqat name emas, boshqa maydonlarni ham qo‘shamiz
+    // Faqat title emas, boshqa maydonlarni ham qo‘shamiz
     const preparedProducts = allProducts.map(product => {
       const combinedText = [
-        product.name,
+        product.title,
         product.brand,
         product.colors,
         product.description
@@ -219,16 +219,19 @@ export const searchProducts = async (req, res) => {
       return res.status(404).json({
         message: 'No matching products found.',
         data: [],
-        suggestions: allProducts.slice(0, 5).map(p => p.name)
+        suggestions: allProducts.slice(0, 5).map(p => p.title)
       })
     }
 
-    const suggestions = matchedProducts.map(p => p.name)
+    const suggestions = matchedProducts.map(p => p.title)
 
     return res.status(200).json({
       message: 'Search results',
       data: matchedProducts,
-      suggestions: suggestions.slice(0, 5)
+      suggestions: suggestions
+        .map(p => p.title)
+        .filter(title => !!title)
+        .slice(0, 5)
     })
   } catch (error) {
     return sendErrorResponse(res, 500, 'Internal server error.', error)

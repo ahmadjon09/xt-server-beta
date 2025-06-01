@@ -13,7 +13,7 @@ const ReviewSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const ProductSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(  
   {
     title: { type: String, required: true },
     description: { type: String, default: 'N/A' },
@@ -38,7 +38,7 @@ const ProductSchema = new mongoose.Schema(
       }
     ],
     reviews: [ReviewSchema],
-    rating: { type: Number, default: 0 }
+    rating: { type: Number, default: 5 }
   },
   { timestamps: true }
 )
